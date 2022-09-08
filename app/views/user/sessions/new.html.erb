@@ -1,0 +1,42 @@
+<h4><strong>ログイン</strong></h4>
+
+<p>会員の方はこちらからログイン</p>
+
+<%= form_with model: @user, url: user_session_path, local: true do |f| %>
+<table>
+  <tr>
+    <div class="field">
+      <td></td>
+      <td><%= f.label 'メールアドレス' %></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td></td>
+      <td><%= f.label 'パスワード' %></td>
+      <td>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+      </td>
+    </div>
+  </tr>
+  <tr>
+    <div class="actions">
+      <td></td>
+      <td></td>
+      <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+    </div>
+  </tr>
+</table>
+<% end %>
+
+<h4>会員登録がお済みでない方</h4>
+<div>
+  <%= render "user/shared/links" %> から新規登録を行ってください。
+</div>

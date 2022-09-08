@@ -1,0 +1,31 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'users/info', user: @idea.user %>
+      <h2 class="mt-3">New idea</h2>
+      <%= render 'ideas/form', idea: @idea_new %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2>Book detail</h2>
+  		<table class='table'>
+  		 <tbody>
+  		  <tr>
+          <td>
+            <%= link_to(@idea.user) do %>
+            <%= image_tag @idea.user.get_profile_image, size:"50x50" %><br>
+            <%= @idea.user.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @idea.title, @idea %></td>
+          <td><%= @idea.body %></td>
+            <% if @idea.user == current_user %>
+              <td><%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to 'Destroy', @idea, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <% end %>
+        </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+            <!--<span style="background-color:pink"><strong>　title　</strong></span>-->
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% ideas.each do |idea| %>
+      <tr>
+        <td><%= link_to(idea.user) do %>
+          <%= image_tag idea.user.get_profile_image, size:'50x50' %>
+          <% end %>
+        </td>
+        <td><%= link_to idea.title,idea %></td>
+        <td><%= idea.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

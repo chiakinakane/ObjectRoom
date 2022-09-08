@@ -1,0 +1,57 @@
+<%#後で消す%>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto" style="width: 500px;">
+    
+    <h2>アイデア投稿</h2>
+    <%= form_with model: @idea, url: ideas_path, method: :post, local: true do |f| %>
+        <div class="col-5">
+        </div>
+    <tbody>
+      <tr>
+        <td>
+          <div class="img-container">
+            <%= f.file_field :image, accept: "image/*"%>
+            <%#= f.hidden_field :product_image %>
+            <!--画像を入れなくても情報を送ってくれる-->
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= f.label :アイテム名 %>
+            <%= f.text_field :title, class:"form-control" %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= f.label :説明 %>
+            <%= f.text_area :body, class:"form-control" %>
+          </div>
+        </td>
+      </tr>       
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= f.label :ジャンル %>
+            <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+       <td>
+        <div class="form-group">
+         <%= f.hidden_field :id, :value => @idea.id %>
+      	 <%= f.submit "新規登録", class:"btn btn-info" %>
+        </div>
+        </td>
+      </tr>
+      </tbody>
+    <% end %>
+</div>
+</div>
+</div>
+
