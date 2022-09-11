@@ -2,17 +2,18 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info', user: @idea.user %>
+      <%= render 'user/users/info', user: @idea.user %>
       <h2 class="mt-3">New idea</h2>
-      <%= render 'ideas/form', idea: @idea_new %>
+      <%= render 'form', idea: @idea_new %>
+      <!--レンダー階層が同じならファイル名のみで記入-->
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<h2>Book detail</h2>
+  		<h2>Idea detail</h2>
   		<table class='table'>
   		 <tbody>
   		  <tr>
           <td>
-            <%= link_to(@idea.user) do %>
+            <%= link_to user_path(@idea.user) do %>
             <%= image_tag @idea.user.get_profile_image, size:"50x50" %><br>
             <%= @idea.user.name %>
             <% end %>

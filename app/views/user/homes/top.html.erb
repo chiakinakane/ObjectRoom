@@ -1,2 +1,23 @@
-<h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
+      <h1>welcome to <i class="fas fa-house-user"></i><strong>ObjectRoom</strong>  !!</h1>
+      <p>In  <i class="fas fa-house-user"></i><strong>ObjectRoom</strong>, </p>
+      <p>お部屋をおしゃれに変身させたい！</p>
+      <p>ものが溢れて大変！どうやって収納すればいいの？</p>
+      <p> みんなのレイアウトを教えて！</p>
+      <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+          <%= link_to 'ゲストログイン（閲覧用）', user_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+        </div>
+        <div class="row">
+          <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        </div>
+        <div class="row">
+          <%= link_to 'Sign Up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

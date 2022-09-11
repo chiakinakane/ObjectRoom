@@ -15,11 +15,11 @@ class User::IdeasController < ApplicationController
   def show
     @idea = Idea.find(params[:id])
     @idea_image = @idea.image
-    unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
-      current_user.view_counts.create(idea_id: @idea.id)
-    end
+    # unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
+    #   current_user.view_counts.create(idea_id: @idea.id)
+    # end
     @idea_new = Idea.new
-    @idea_comment = IdeaComment.new
+    # @idea_comment = IdeaComment.new
   end
 
 
@@ -29,7 +29,8 @@ class User::IdeasController < ApplicationController
   
   def create
     @idea = Idea.new(idea_params)
-    @idea.user_id = current_user
+    @idea.user_id = current_user.id
+    #ユーザーのid のみ持ってくる記述を
     if @idea.save
       redirect_to idea_path(@idea.id), notice: "You have created book successfully."
     else

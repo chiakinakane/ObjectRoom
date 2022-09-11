@@ -36,7 +36,7 @@ class User::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :introduction, :profile_image)
+      params.require(:user).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :email, :encrypted_password, :introduction, :profile_image, :is_deleted)
     end
 
     def ensure_correct_user
@@ -45,6 +45,7 @@ class User::UsersController < ApplicationController
         redirect_to user_path(current_user)
       end
     end
+    
     def ensure_guest_user
       @user = User.find(params[:id])
       if @user.name == "guestuser"

@@ -11,8 +11,9 @@
   <tbody>
     <% ideas.each do |idea| %>
       <tr>
-        <td><%= link_to(idea.user) do %>
-          <%= image_tag idea.user.get_profile_image, size:'50x50' %>
+        <td><%= link_to idea_path(idea.user) do %>
+        　<!--path,'文字'. でも記述できる-->
+          <%#= image_tag idea.user.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
         <td><%= link_to idea.title,idea %></td>
