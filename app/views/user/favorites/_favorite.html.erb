@@ -1,0 +1,15 @@
+<% if !user_signed_in? %>
+  <i class="fa fa-heart favorite-btn"></i>
+  <%= idea.favorites.length %>
+<% elsif current_user.favorited_by?(idea.id) %>
+  <%= link_to idea_favorites_path(idea, idea.favorites), class: "favorite-link", method: :delete, remote: true do %>
+    <i class="fa fa-heart unfavorite-btn"></i>
+  <% end %>
+  
+  <%= idea.favorites.length %>
+<% else %>
+  <%= link_to idea_favorites_path(idea), class: "favorite-link", method: :post, remote: true do %>
+    <i class="fa fa-heart favorite-btn"></i>
+  <% end %>
+  <%= idea.favorites.length %>
+<% end %>

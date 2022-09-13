@@ -1,5 +1,6 @@
 class User::HomesController < ApplicationController
-  def top
+ def top
+    @genres = Genre.all
   end
 
   def about

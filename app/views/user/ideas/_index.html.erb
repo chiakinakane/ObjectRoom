@@ -18,6 +18,9 @@
         </td>
         <td><%= link_to idea.title,idea %></td>
         <td><%= idea.body %></td>
+        <td id = "favorite_<%= idea.id %>">
+             <%= render partial: "user/favorites/favorite", locals: { idea: idea } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,6 +1,10 @@
 class Admin::UsersController < ApplicationController
+   # before_action :authenticate_admin!
+  
+   # layout "admin_application"
+    
    def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def show
@@ -12,9 +16,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @cuser = User.find(params[:id])
-    if @cuser.update(user_params)
-      redirect_to admin_cuser_path(@user), notice: "会員情報を編集しました"
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user), notice: "会員情報を編集しました"
     else
       render "edit"
     end

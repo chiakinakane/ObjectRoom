@@ -28,11 +28,12 @@ class User::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "会員情報を編集しました"
     else
       render "edit"
     end
   end
+  
 
   private
     def user_params

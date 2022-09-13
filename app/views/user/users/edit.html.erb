@@ -1,24 +1,38 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2>User info</h2>
-    <%= form_with model:@user, local:true do |f| %>
-      <%= render 'layouts/errors', obj: @user %>
-      <div class="form-group">
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: "form-control name" %>
-      </div>
-     <div class="form-group">
-        <%= f.label :image %>
-        <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :introduction %>
-        <%= f.text_area :introduction, class: "form-control introduction" %>
-      </div>
-      <div class="form-group">
-        <%= f.submit class: 'btn btn-secondary' %>
-      </div>
-    <% end %>
+
+
+<h2>会員情報編集</h2>
+
+<%= form_with model: @user, url: user_path, local:true do |f| %>
+<table>
+  <tr class="form-group">
+    <th>氏名</th>
+    <td><%= f.text_field :last_name, class: "form-control last_name" %></td>
+    <td></td>
+    <td><%= f.text_field :first_name, class: "form-control first_name" %></td>
+  </tr>
+  <tr class="form-group">
+    <th>フリガナ</th>
+    <td><%= f.text_field :kana_last_name, class: "form-control kana_last_name" %></td>
+    <td></td>
+    <td><%= f.text_field :kana_first_name, class: "form-control kana_first_name" %></td>
+  </tr>
+  <tr class="form-group">
+    <th>メールアドレス</th>
+    <td><%= f.email_field :email, class: "form-control email" %></td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.submit "編集内容を保存", class: 'btn btn-secondary' %>
+    </td>
+    <td>
+      <%#= link_to "退会する", user_check_path, class: 'btn btn-secondary' %>
+    </td>
+  </tr>
+</table>
+<% end %>
+  </div>
   </div>
 </div>

@@ -24,14 +24,14 @@ Rails.application.routes.draw do
     scope module: :user do
     root to: 'homes#top'
     get '/about' => 'homes#about'
-    # get '/user/:id' => 'users#show', as: 'user_show'
-    # get '/my_page' => 'users#my_page', as: 'user_my_page'
-    # get '/user/information/edit/:user_id' => 'users#edit'
-    # patch '/user/information' => 'users#update'
     resources :users, only: [:index, :show, :edit, :update]
-    resources :ideas, only: [:index, :show, :edit, :create, :update, :destroy]
     resources :orders, only: [:new, :index, :show, :create]
+    resources :genres, only: [:index]
+    resources :ideas, only: [:index, :show, :edit, :create, :update, :destroy] do
+    resources :idea_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
     end
+  end
 
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

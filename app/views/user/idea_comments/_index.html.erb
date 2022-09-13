@@ -1,0 +1,15 @@
+<!--/ ----- 'travel_records/show'で使用中 ------->
+<th> コメント一覧<%= "#{comments.count}件" %> </th>
+<% comments.first(2).each do |comment| %>
+  <td><%= render 'user/idea_comments/idea_comments', comment: comment %></td>
+<% end %>
+<!--/ ----- コメントが3件以上の場合、残りのコメントをプルダウンで表示するボタンの作成 ------->
+<% comments.offset(2).any? %>
+<td class="text-right">
+    <button type="button" class="btn-primary" data-toggle="collapse" data-target=".collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="this.parentNode.style.display='none'">
+      もっと見る....
+    </button>
+</td>
+<% comments.offset(2).each do |comment| %>
+  <td class="collapse collapseExample"><%= render 'user/idea_comments/idea_comments', comment: comment %></td>
+<% end %>
