@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def name
-    first_name.to_s + last_name.to_s
+    last_name.to_s + first_name.to_s
   end
   #保存した後に使えるメソッド
   

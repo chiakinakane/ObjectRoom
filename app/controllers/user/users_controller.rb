@@ -9,12 +9,12 @@ class User::UsersController < ApplicationController
     @idea = Idea.new
   end
 
-  def my_page
-    @user = current_user
-    @ideas = @user.ideas
-    @idea = Idea.new
-    render :show
-  end
+  # def my_page
+  #   @user = current_user
+  #   @ideas = @user.ideas
+  #   @idea = Idea.new
+  #   render :show
+  # end
 
   def index
     @users = User.all

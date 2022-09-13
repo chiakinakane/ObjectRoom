@@ -1,13 +1,13 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>User info</h2>
+      <h3><strong>My info</strong></h3>
       <%= render 'user/users/info', user: @user %>
-      <h2 class="mt-3">New idea</h2>
+      <h2 class="mt-3">アイデア</h2>
       <%= render 'user/ideas/form', idea: @idea %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Books</h2>
+      <h3><strong>アイデア一覧</strong></h3>
       <%= render 'user/ideas/index',ideas: @ideas %>
     </div>
   </div>

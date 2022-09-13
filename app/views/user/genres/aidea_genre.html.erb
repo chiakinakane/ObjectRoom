@@ -10,7 +10,7 @@
         <div class = "new-arrival">
           <div style="display:flex; flex-wrap:wrap;">
             <h3><strong><%= @genre.name %>一覧</strong></h3>
-            <div class="mt-2"><strong>（全<%= @genre_items.count%>件）</strong></div>
+            <div class="mt-2"><strong>（全<%= @genres.count%>件）</strong></div>
           </div>
           <div class = "new-arrival-contents" style="display:flex; flex-wrap:wrap;">
             <% @genre_items.each do |item| %>
