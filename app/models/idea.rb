@@ -8,7 +8,7 @@ class Idea < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
   
-    def get_image
+  def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
 end

@@ -74,5 +74,6 @@ class User::IdeasController < ApplicationController
     redirect_to ideas_path
   end
 end
+
 end
 

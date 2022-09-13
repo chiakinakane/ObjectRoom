@@ -12,14 +12,15 @@
   		<table class='table'>
   		 <tbody>
   		  <tr>
+  		    <td><%= @idea.title %></td>
+  		  </tr>
+  		  <tr>
           <td>
             <%= link_to user_path(@idea.user) do %>
-            <%= image_tag @idea.user.get_profile_image, size:"50x50" %><br>
+            <%= image_tag @idea.get_image, size:"200x150" %>
             <%= @idea.user.name %>
             <% end %>
           </td>
-
-          <td><%= link_to @idea.title, @idea %></td>
           <td><%= @idea.body %></td>
           <td id = "favorite_<%= @idea.id %>">
              <%= render partial: "user/favorites/favorite", locals: { idea: @idea } %>

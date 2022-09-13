@@ -20,13 +20,13 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_user_path(@user), notice: "会員情報を編集しました"
     else
-      render "edit"
+      render :edit
     end
   end
 
   private
 
-  def customer_params
+  def user_params
     params.require(:user).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :email, :is_deleted)
   end
 end

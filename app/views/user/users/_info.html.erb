@@ -1,15 +1,23 @@
 <table class='table'>
-  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+   <% if user.name != "guestuser" %>
+<div class='row'>
+  <%= link_to edit_user_path(user), class:"text-dark"  do %>
+  <div class="mr-3">
+      <%= image_tag user.get_profile_image, style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;", size:'100x100' %>
+    </div>
+  <% end %> 
+  </div>
+<% end %>
+  <%#= image_tag "画像パス or URL", style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;" %>
   <tr>
 	  <th>name</th>
 	  <th><%= user.name %></th>
   </tr>
 </table>
- <% if user.name != "guestuser" %>
-<div class='row'>
-  <%= link_to edit_user_path(user),class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-  <i class = "fas fa-user-cog"></i>
-  <% end %>
-</div>
-<% end %>
+
 　
+　
+　
+
+              
+

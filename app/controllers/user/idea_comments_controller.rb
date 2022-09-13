@@ -17,7 +17,7 @@ class User::IdeaCommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = IdeaComment.find(params[:id])
     @comment.destroy
     flash.now[:notice] = "コメントを削除しました。"
     render :index

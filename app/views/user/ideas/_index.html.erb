@@ -13,7 +13,7 @@
     
     <% ideas.each do |idea| %>
       <tr>
-        <td><% image_tag idea.get_image, size:"200x150" %></td>
+        <td><%= image_tag idea.get_image, size:"200x150" %></td>
         <td><%= link_to idea.title,idea %></td>
         <td><%= idea.body %></td>
         </td>

@@ -8,6 +8,10 @@
 <%= form_with model: @user, url: user_path, local:true do |f| %>
 <table>
   <tr class="form-group">
+    <th>画像</th>
+    <td><%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %></td>
+  </tr>
+  <tr class="form-group">
     <th>氏名</th>
     <td><%= f.text_field :last_name, class: "form-control last_name" %></td>
     <td></td>
@@ -23,6 +27,7 @@
     <th>メールアドレス</th>
     <td><%= f.email_field :email, class: "form-control email" %></td>
   </tr>
+  
   <tr>
     <td>
       <%= f.submit "編集内容を保存", class: 'btn btn-secondary' %>

@@ -4,7 +4,7 @@
 <div class = "genre-search-contents border border-dark", style = "height:300px">
   <% genres.each do |genre| %>
     <p class = "ml-2 mt-2">
-      <%= link_to idea_genre_ideas_path(genre), class:"text-dark" do %>
+      <%= link_to genres_path(genre), class:"text-dark" do %>
         <%= genre.name %>
       <% end %>
     </p>
