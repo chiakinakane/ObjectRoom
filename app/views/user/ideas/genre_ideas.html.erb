@@ -2,7 +2,7 @@
  <div class='container mt-5 h-75'>
   <div class='row h-100'>
     <div class='col-md-2'>
-      <%#= render 'genre_search', genres: @genres %>
+      <%= render 'genre_search', genres: @genres %>
     </div>
 
     <div  class='col-md-10'>
@@ -10,15 +10,14 @@
         <div class = "new-arrival">
           <div style="display:flex; flex-wrap:wrap;">
             <h3><strong><%= @genre.name %>一覧</strong></h3>
-            <div class="mt-2"><strong>（全<%= @genres.count%>件）</strong></div>
+            <div class="mt-2"><strong>（全<%= @genre_ideas.count%>件）</strong></div>
           </div>
           <div class = "new-arrival-contents" style="display:flex; flex-wrap:wrap;">
             <% @genre_ideas.each do |idea| %>
               <%= link_to idea_path(idea), class:"text-dark"  do %>
               <div class="mr-3">
-                  <%= image_tag idea.get_image, size:"200x150" %>
+                  <%= image_tag idea.get_idea_image, size:"200x150" %>
                   <p class="mt-3 mb-1"><strong><%= idea.name %></strong></p>
-                  <p class="mb-5"><strong>￥<%= idea.add_tax_price.to_s(:delimited) %></strong></p>
                 </div>
               <% end %>
             <% end %>
@@ -28,7 +27,7 @@
     </div>
 
     <div style="margin:0 auto;">
-      <%= paginate @genre_items%>
+      <%= paginate @genre_ideas%>
     </div>
   </div>
 </div>

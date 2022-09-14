@@ -6,11 +6,12 @@
       <% if comment.user.profile_image %>
         <%= link_to image_tag(comment.user.get_profile_image), url: user_path(comment.user.id) %>
       <% else %>
-        <%= link_to image_tag('no_profile_img.png'), user_path(comment.user.id) %>
+        <%= link_to image_tag('no_profile_img.png'), user_path(comment.user.id), size:"50x50" %>
+        
         <%= link_to "#{comment.user.name}さん", user_path(comment.user.id), class: 'link pl-1' %>
       <% end %>
     </div>
-      <div class= 'col.d-flex.justify-content-end'>
+    <div class= 'col.d-flex.justify-content-end'>
         <%= comment.created_at.strftime('%Y/%m/%d') %>
       </div>
 <!--/ コメントの表示-->

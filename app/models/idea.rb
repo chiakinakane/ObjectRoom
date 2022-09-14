@@ -11,4 +11,6 @@ class Idea < ApplicationRecord
   def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
+  
+  
 end

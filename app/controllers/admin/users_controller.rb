@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   
    # layout "admin_application"
     
-   def index
+  def index
     @users = User.page(params[:page]).per(10)
   end
 

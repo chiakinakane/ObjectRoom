@@ -10,12 +10,14 @@ class User::IdeasController < ApplicationController
     @idea = Idea.new
     @user = current_user
     @ideas = Idea.all  
+    @genres = Genre.all
   end
 
   def show
     @idea_new = Idea.new
     @idea = Idea.find(params[:id])
     @idea_image = @idea.image
+    @genres = Genre.all
     # unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
     #   current_user.view_counts.create(idea_id: @idea.id)
     # end
@@ -39,6 +41,7 @@ class User::IdeasController < ApplicationController
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
     #ユーザーのid のみ持ってくる記述を
+    
     if @idea.save
       redirect_to idea_path(@idea.id), notice: "You have created book successfully."
     else
@@ -60,6 +63,12 @@ class User::IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @idea.destroy
     redirect_to ideas_path
+  end
+  
+    def genre_ideas
+    @genres = Genre.all
+    @genre = Genre.find(params[:item_id])
+    @genre_ideas = @genre.ideas.page(params[:page]).per(8)
   end
   
     private

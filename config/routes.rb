@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :ideas, only: [:index, :show, :edit, :create, :update, :destroy] do
     resources :idea_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    get '/genre_ideas' => 'ideas#genre_ideas'
     end
   end
 

@@ -4,12 +4,14 @@ class Public::IdeasController < ApplicationController
 
   def new
    @idea = Idea.new
+   @genres = Genre.all
   end
 
   def index
     @idea = Idea.new
     @public = current_user
-    @ideas = Idea.all  
+    @ideas = Idea.all
+    @genres = Genre.all
   end
 
   def show
@@ -27,6 +29,12 @@ class Public::IdeasController < ApplicationController
       @ideas = Idea.all
       render "index"
     end
+  end
+  
+  def genre_ideas
+    @genres = Genre.all
+    @genre = Genre.find(params[:idea_id])
+    @genre_ideas = @genre.ideas.page(params[:page]).per(8)
   end
   
     private
