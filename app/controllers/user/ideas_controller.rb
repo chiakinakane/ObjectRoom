@@ -1,10 +1,7 @@
 class User::IdeasController < ApplicationController
     before_action :authenticate_user!
     before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-  
-  def new
-   @idea = Idea.new
-  end
+
 
   def index
     @idea = Idea.new
@@ -67,7 +64,7 @@ class User::IdeasController < ApplicationController
   
     def genre_ideas
     @genres = Genre.all
-    @genre = Genre.find(params[:item_id])
+    @genre = Genre.find(params[:idea_id])
     @genre_ideas = @genre.ideas.page(params[:page]).per(8)
   end
   

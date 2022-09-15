@@ -1,0 +1,16 @@
+<h3><strong>いいね一覧</strong></h3>
+  <div class="mt-2"><strong>（全<%= @favorite_ideas.count%>件）</strong></div>
+<div class="row">
+  <% @favorite_ideas.each do |favorite_idea| %>
+    <div class="col-md-3">
+      <div class="card shadow">
+        <%= link_to idea_path(favorite_idea.id) do %>
+          <%= image_tag favorite_idea.get_image, class: 'w-100 favorite-card-img' %>
+        <% end %>
+        <div class="card-body">
+          <%= favorite_idea.title %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

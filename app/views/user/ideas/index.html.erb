@@ -1,19 +1,17 @@
 <div class='container px-5 px-sm-0'>
+  <%= link_to '新規投稿', new_idea_path, class: "btn btn-info" %>
   <%= render 'layouts/errors', obj: @idea %>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>User info</h2>
+      <h3><strong>User info</strong></h3>
       <%= render 'user/users/info', user: current_user %>
-      <h2 class="mt-3">New idea</h2>
-      <%= render 'form', idea: @idea %>
+      <h3 class="mt-3"><strong>ジャンル</strong></h3>
+      <%= render 'genre_search', genres: @genres %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>Ideas</h2>
+      <h2><strong>ユーザーアイデア一覧</strong></h2>
       <%= render 'index', ideas: @ideas %>
     </div>
-    <div class='col-md-8 offset-md-1'>
-      <h2>ジャンル</h2>
-      <%= render 'admin/genre/index', genres: @genres %>
-    </div>
+
   </div>
 </div>

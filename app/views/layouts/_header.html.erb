@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: coral;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #FA8072;">
     <div class="container">
       <a class="navbar-brand" href="/"><span>-Object Room-</span></a>
       <%#= image_tag 'top.jpeg' %>
@@ -17,6 +17,11 @@
           <li>
             <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
               <i class="fas fa-user"></i> マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-user"></i> ユーザー
             <% end %>
           </li>
           <li>

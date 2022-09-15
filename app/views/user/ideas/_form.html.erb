@@ -1,16 +1,16 @@
-
-<%= form_with model:idea, url: ideas_path, method: :post do |f| %>
-<strong><%= f.label :image, "画像", style:"margin-right:70px;" %></strong>
-<%= f.file_field :image, accept: 'image/*' %><br>
-
-<strong><%= f.label :title, "アイデア", style:"margin-right:86px;"  %></strong>
-<%= f.text_field :title, placeholder: "アイデア",size: "36" %><br>
-
-<strong><%= f.label :body, "アイデア紹介", style:"vertical-align:top; margin-top:5px; margin-right:70px;"  %></strong>
-<%= f.text_area :body, placeholder: "ここに説明文を記述します", style:"width:307px; height:150px; resize:none;" %><br>
-
-<strong><%= f.label :genre_id, "ジャンル", style:"margin-right:70px;"  %></strong>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
+  
+  <%= form_with model:idea, url: ideas_path, method: :post do |f| %>
+  <strong><%= f.label :image, "画像", style:"margin-right:70px;" %></strong>
+  <%= f.file_field :image, accept: 'image/*' %><br>
+  
+  <strong><%= f.label :title, "タイトル", style:"margin-right:86px;"  %></strong>
+  <%= f.text_field :title, placeholder: "アイデア",size: "35" %><br>
+  
+  <strong><%= f.label :body, "おすすめポイント", style:"vertical-align:top; margin-top:5px; margin-right:100px;"  %></strong>
+  <%= f.text_area :body, placeholder: "ここに説明文を記述します", style:"width:307px; height:150px; resize:none;" %><br>
+  
+  <strong><%= f.label :genre_id, "ジャンル", style:"margin-right:70px;"  %></strong>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
 
   <div class="form-group">
     <%= f.submit class: 'btn btn-success col-5' %>

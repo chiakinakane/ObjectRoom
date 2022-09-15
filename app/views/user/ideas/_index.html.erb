@@ -1,16 +1,16 @@
-<div class="mt-2"><strong>（全<%= ideas.count%>件）</strong></div>
+<!--いいね一覧ページ-->
+<th class="mt-2"><strong>（全<%= ideas.count%>件）</strong></th>
+<%= link_to "いいね一覧", favorites_user_path(@user) %>
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
       <th>画像</th>
-      <th>Title</th>
-            <!--<span style="background-color:pink"><strong>　title　</strong></span>-->
-      <th>Opinion</th>
-      <th colspan="3"></th>
+      <th>タイトル</th>
+      <th>おすすめポイント</th>
+      
     </tr>
   </thead>
   <tbody>
-    
     <% ideas.each do |idea| %>
       <tr>
         <td><%= image_tag idea.get_image, size:"200x150" %></td>

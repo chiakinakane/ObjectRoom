@@ -2,55 +2,24 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto" style="width: 500px;">
-    
-    <h2>アイデア投稿</h2>
-    <%= form_with model: @idea, url: ideas_path, method: :post, local: true do |f| %>
-        <div class="col-5">
-        </div>
-    <tbody>
-      <tr>
-        <td>
-          <div class="img-container">
-            <%= f.file_field :image, accept: "image/*"%>
-            <%#= f.hidden_field :product_image %>
-            <!--画像を入れなくても情報を送ってくれる-->
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="form-group">
-            <%= f.label :アイテム名 %>
-            <%= f.text_field :title, class:"form-control" %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="form-group">
-            <%= f.label :説明 %>
-            <%= f.text_area :body, class:"form-control" %>
-          </div>
-        </td>
-      </tr>       
-      <tr>
-        <td>
-          <div class="form-group">
-            <%= f.label :ジャンル %>
-            <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-       <td>
-        <div class="form-group">
-         <%= f.hidden_field :id, :value => @idea.id %>
-      	 <%= f.submit "新規登録", class:"btn btn-info" %>
-        </div>
-        </td>
-      </tr>
-      </tbody>
-    <% end %>
+    <h3><strong>新規投稿</strong></h3>
+  <%= form_with model:@idea, url: ideas_path, method: :post do |f| %>
+       <strong><%= f.label :image, "画像", style:"margin-right:120px;" %></strong>
+        <%= f.file_field :image, accept: 'image/*' %><br>
+        
+        <strong><%= f.label :title, "タイトル", style:"margin-right:88px;"  %></strong>
+        <%= f.text_field :title, placeholder: "アイデア", class: 'form-control' %><br>
+        
+        <strong><%= f.label :body, "おすすめポイント", style:"vertical-align:top; margin-top:5px; margin-right:23px;"  %></strong>
+        <%= f.text_area :body, placeholder: "ここに説明文を記述します", rows: 5, class: 'form-control' %><br>
+        
+        <strong><%= f.label :genre_id, "ジャンル", style:"margin-right:88px;"  %></strong>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, class: 'form-control' %><br>
+
+  <div class="form-group">
+    <%= f.submit "新規登録", class: "btn btn-info" %>
+  </div>
+<% end %>
 </div>
 </div>
 </div>

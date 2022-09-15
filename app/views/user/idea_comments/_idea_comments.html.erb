@@ -1,26 +1,21 @@
 <!--/ ----- 'comments/_index'で使用中 ------->
-<div class='container'>
-  <!--/ ユーザー詳細の表示-->
-  <div class='row.d-flex.align-items-center.pb-3'>
-    <div class='col'>
-      <% if comment.user.profile_image %>
-        <%= link_to image_tag(comment.user.get_profile_image), url: user_path(comment.user.id) %>
-      <% else %>
-        <%= link_to image_tag('no_profile_img.png'), user_path(comment.user.id), size:"50x50" %>
-        
-        <%= link_to "#{comment.user.name}さん", user_path(comment.user.id), class: 'link pl-1' %>
+<div class="row mb-3">
+  <div class="col-md-4 text-center">
+    <div class="profile-image">
+      <%= link_to user_path(comment.user.id) do %>
+        <%= image_tag comment.user.get_profile_image, class: 'rounded-circle', size: '50x50' %>
       <% end %>
     </div>
-    <div class= 'col.d-flex.justify-content-end'>
-        <%= comment.created_at.strftime('%Y/%m/%d') %>
-      </div>
-<!--/ コメントの表示-->
-    <div class='card-body.border.rounded.mb-3'>
-      <%= comment.comment %>
-    </div>
-    <%if comment.user == current_user %>
-    <%= link_to '削除', idea_idea_comment_path(comment.idea_id, comment.id), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-    <% end %>
+    <small>
+      <%= link_to "#{comment.user.name}さん", user_path(comment.user.id), class: 'link' %>
+    </small>
   </div>
-  
+  <div class="col-md-8 text-center text-md-left">
+    <%= simple_format(comment.comment) %>
+    <div class="control-btn">
+      <% if comment.user == current_user %>
+        <%= link_to '削除', idea_idea_comment_path(comment.idea_id, comment.id), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -24,10 +24,14 @@ Rails.application.routes.draw do
     scope module: :user do
     root to: 'homes#top'
     get '/about' => 'homes#about'
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:new, :index, :show, :create]
+    resources :users, only: [:index, :show, :edit, :update] do
+ # いいね一覧表示
+    member do
+    get :favorites
+    end
+    end
     resources :genres, only: [:index]
-    resources :ideas, only: [:index, :show, :edit, :create, :update, :destroy] do
+    resources :ideas, only: [:new, :index, :show, :edit, :create, :update, :destroy] do
     resources :idea_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     get '/genre_ideas' => 'ideas#genre_ideas'

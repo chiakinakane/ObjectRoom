@@ -1,46 +1,46 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-3'>
-      <h2>User info</h2>
-      <%= render 'user/users/info', user: @idea.user %>
-      <h2 class="mt-3">New idea</h2>
-      <%= render 'form', idea: @idea_new %>
+   <div class="col-md-3">
+    <h2>User info</h2>
+       <%= render 'user/users/info', user: @idea.user %>
+      <h3><strong>アイデア</strong></h3>
+       <%= render 'form', idea: @idea_new %>
       <!--レンダー階層が同じならファイル名のみで記入-->
     </div>
     <div class='col-md-8 offset-md-1'>
-  		<h2>💜アイデア💜</h2>
-  		<table class='table'>
-  		 <tbody>
-  		  <tr>
-  		    <td><%= @idea.title %></td>
-  		  </tr>
-  		  <tr>
-          <td>
-            <%= link_to user_path(@idea.user) do %>
-            <%= image_tag @idea.get_image, size:"200x150" %>
-            <%= @idea.user.name %>
-            <% end %>
-          </td>
-          <td><%= @idea.body %></td>
-          <td id = "favorite_<%= @idea.id %>">
-             <%= render partial: "user/favorites/favorite", locals: { idea: @idea } %>
-          </td>
-            <%if @idea.user == current_user %>
-              <td><%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-sm btn-success" %></td>
-              <td><%= link_to 'Destroy', @idea, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-            <% end %>
-        </tr>
-        <tr id="comments_area">
-                <%= render 'user/idea_comments/index', comments: @comments %>
-        </tr>
-       </tbody>
-      </table>
-        <div id="comments_area">
-         <% if user_signed_in? %>
-          <%= render 'user/idea_comments/form', idea: @idea, comment: @comment %>
-         <% end %>
-        <!--</div>-->
+      <h3><strong>アイデア</strong></h3>
+      <hr>
+      <h5><%= @idea.title %></h5>
+      <div class="row">
+        <div class="col-md-5">
+          <%= link_to user_path(@idea.user) do %>
+            <%= image_tag @idea.get_image, class: 'img-fluid' %>
+          <% end %>
         </div>
-    </div>
+        <div class="col-md-7">
+          <%= simple_format(@idea.body) %>
+          <div class="row">
+            <div class="col-md-6">
+              投稿者：<%= link_to @idea.user.name, user_path(@idea.user) %>
+              <div class="control-btn mt-3">
+                <%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-sm btn-success" %>
+                <%= link_to 'Destroy', @idea, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+              </div>
+            </div>
+            <div class="col-md-6 text-right">
+              <div id="favorite_<%= @idea.id %>">
+                <%= render partial: "user/favorites/favorite", locals: { idea: @idea } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <%= render 'user/idea_comments/index', comments: @comments %>
+      <hr>
+      <% if user_signed_in? %>
+        <%= render 'user/idea_comments/form', idea: @idea, comment: @comment %>
+      <% end %>
+  </div>
   </div>
 </div>
