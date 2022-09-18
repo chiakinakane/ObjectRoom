@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'ideas/index'
+  end
   devise_for :admin, skip: [:passwords], controllers: {
   registrations: "admin/registrations",
   sessions: "admin/sessions"
@@ -19,11 +22,13 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
+    resources :ideas, only: [:index, :destroy]
     end
   
     scope module: :user do
     root to: 'homes#top'
     get '/about' => 'homes#about'
+    get "search" => "searches#search"
     resources :users, only: [:index, :show, :edit, :update] do
  # いいね一覧表示
     member do

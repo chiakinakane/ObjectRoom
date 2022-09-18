@@ -25,11 +25,27 @@ class User < ApplicationRecord
   # profile_image.variant(resize_to_limit: [width, height]).processed
 
   end
-
+  #保存した後に使えるメソッド
   def name
     last_name.to_s + first_name.to_s
   end
-  #保存した後に使えるメソッド
+  
+  
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("last_name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("last_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("last_name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("last_name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+  
   
   def favorited_by?(idea_id)
     favorites.where(idea_id: idea_id).exists?

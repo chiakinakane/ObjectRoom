@@ -1,7 +1,10 @@
 class User::IdeasController < ApplicationController
     before_action :authenticate_user!
     before_action :ensure_correct_user, only: [:edit, :update, :destroy]
-
+  
+  def new
+   @idea = Idea.new
+  end
 
   def index
     @idea = Idea.new
@@ -40,7 +43,7 @@ class User::IdeasController < ApplicationController
     #ユーザーのid のみ持ってくる記述を
     
     if @idea.save
-      redirect_to idea_path(@idea.id), notice: "You have created book successfully."
+      redirect_to idea_path(@idea.id), notice: "新しい投稿ができました。"
     else
       @ideas = Idea.all
       render "index"
@@ -50,7 +53,7 @@ class User::IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     if @idea.update(idea_params)
-      redirect_to idea_path(@idea), notice: "You have updated book successfully."
+      redirect_to idea_path(@idea), notice: "投稿を更新しました。"
     else
       render "edit"
     end

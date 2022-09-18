@@ -1,0 +1,70 @@
+<h3><strong>検索結果</strong></h3>
+<div class="mt-2"><strong>（全<%#= @user.count, @ideas.count%>件）</strong></div>
+  <!--検索対象モデルがUserの時 -->
+<div class="row">
+  <% if @range == "User" %>
+    <tbody>
+      <% @users.each do |user| %>
+    <div class="col-md-3">
+      <div class="card shadow">
+        <%= link_to user_path(search.user.id) do %>
+          <%= image_tag comment.user.get_profile_image, class: 'rounded-circle', size: '50x50' %>
+        <% end %>
+        <div class="card-body">
+          <%= user.name %>
+        </div>
+      </div>
+    </div>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがIdeaの時) -->
+      <% @ideas.each do |idea| %>
+    <div class="col-md-3">
+      <div class="card shadow">
+          <%= link_to idea_path(idea.id) do %>
+          <%= image_tag idea.get_image, class: 'w-100 favorite-card-img' %>
+        <% end %>
+        <div class="card-body">
+          <%= idea.title %>
+        </div>
+      </div>
+    </div>
+        </tr>
+      <% end %>
+  <% end %>
+</div>
+
+<!--<h3><strong>検索結果</strong></h3>-->
+  <!--<div class="mt-2"><strong>（全<%#= @search.count%>件）</strong></div>-->
+<!--<div class="row">-->
+<!--  <%# if @range == "User" %>-->
+<!--    <%#@users.each do |user| %>-->
+<!--    <div class="col-md-3">-->
+<!--      <div class="card shadow">-->
+<!--        <%#= link_to user_path(user.id) do %>-->
+<!--          <%#= image_tag user.get_profile_image, class: 'rounded-circle', size: '150x150' %>-->
+<!--        <%# end %>-->
+<!--        <div class="card-body">-->
+<!--          <%#= user.name %>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  <%# end %>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<%# else %>-->
+<!--<%# @ideas.each do |idea| %>-->
+<!--<div class="col-md-3">-->
+<!--      <div class="card shadow">-->
+<!--        <%#= link_to idea_path(idea.id) do %>-->
+<!--          <%#= image_tag idea.get_image, class: 'w-100 favorite-card-img' %>-->
+<!--        <%# end %>-->
+<!--        <div class="card-body">-->
+<!--          <%#= idea.title %>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  <%# end %>-->
+<!--</div>-->

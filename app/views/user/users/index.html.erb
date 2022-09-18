@@ -1,12 +1,13 @@
 <div class='container px-5 px-sm-0'>
  <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
    <h3><strong>User info</strong></h3>
    <%= render 'info', user: current_user %>
-   <h3><strong>アイデア</strong></h3>
-   <%= render 'user/ideas/form', idea: @idea %><%#フォルダーが違うときはフォルダー名も入れる%>
+   <%= link_to '新規投稿', new_idea_path, class: "btn btn-info" %>
+
+<%#フォルダーが違うときはフォルダー名も入れる%>
    </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-9 offset-md-1'>
    <h2>Users</h2>
    <%= render 'index',users: @users %>
   </div>

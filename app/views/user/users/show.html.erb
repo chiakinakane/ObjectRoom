@@ -1,12 +1,14 @@
 <div class='container px-5 px-sm-0'>
+  <%= render 'layouts/errors', obj: @idea %>
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-2'>
       <h3><strong>User info</strong></h3>
       <%= render 'user/users/info', user: @user %>
-      <h3><strong>アイデア</strong></h3>
-      <%= render 'user/ideas/form', idea: @idea %>
+      <%= link_to '新規投稿', new_idea_path, class: "btn btn-info" %>
+      <h3 class="mt-2"><strong>ジャンル</strong></h3>
+      <%= render 'user/ideas/genre_search', genres: @genres %>
     </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-9 offset-md-1'>
       <h3><strong>アイデア一覧</strong></h3>
       
       <%= render 'user/ideas/index',ideas: @ideas %>

@@ -1,22 +1,23 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-5 mx-auto">
+    <div class="mx-auto" style="width: 500px;">
   		<h3><strong>投稿編集</strong></h3>
   		<%= render 'layouts/errors', obj: @idea %>
     		<%= form_with model:@idea, url: idea_path(@idea.id), method: :patch do |f| %>
     		<!--投稿のフォームと編集のフォームを一緒にしない-->
     		<!--メソッドとパスが一緒だったから投稿に振り分けられていた-->
-        <strong><%= f.label :image, "画像", style:"margin-right:120px;" %></strong>
+       <strong><%= f.label :image, "画像", style:"margin-right:120px;" %></strong>
         <%= f.file_field :image, accept: 'image/*' %><br>
         
         <strong><%= f.label :title, "タイトル", style:"margin-right:88px;"  %></strong>
-        <%= f.text_field :title, placeholder: "アイデア",size: "54" %><br>
+        <%= f.text_field :title, placeholder: "アイデア", class: 'form-control' %><br>
         
         <strong><%= f.label :body, "おすすめポイント", style:"vertical-align:top; margin-top:5px; margin-right:23px;"  %></strong>
-        <%= f.text_area :body, placeholder: "ここに説明文を記述します", style:"width:470px; height:150px; resize:none;" %><br>
+        <%= f.text_area :body, placeholder: "ここに説明文を記述します", rows: 5, class: 'form-control' %><br>
         
         <strong><%= f.label :genre_id, "ジャンル", style:"margin-right:88px;"  %></strong>
-        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, class: 'form-control' %><br>
+
         <div class="form-group">
           <%= f.submit class: 'btn btn-success col-auto' %>
         </div>

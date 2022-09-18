@@ -18,3 +18,6 @@
 <% comments.offset(2).each do |comment| %>
 <div id="comments"><%= render 'user/idea_comments/idea_comments', comment: comment %></div>
 <% end %>
+<%# if current_admin %>
+  <%#= link_to "管理者が削除するよ", idea_comments_path(t.id), method: :delete %>
+<%# end %>

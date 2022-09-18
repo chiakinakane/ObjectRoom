@@ -1,13 +1,14 @@
 <div class='container'>
   <div class='row'>
-   <div class="col-md-3">
-    <h2>User info</h2>
+   <div class="col-md-2">
+    <h3 class="mt-2"><strong>User info</strong></h3>
        <%= render 'user/users/info', user: @idea.user %>
-      <h3><strong>アイデア</strong></h3>
-       <%= render 'form', idea: @idea_new %>
+       <%= link_to '新規投稿', new_idea_path, class: "btn btn-info" %>
+      <h3 class="mt-2"><strong>ジャンル</strong></h3>
+      <%= render 'genre_search', genres: @genres %>
       <!--レンダー階層が同じならファイル名のみで記入-->
     </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-9 offset-md-1'>
       <h3><strong>アイデア</strong></h3>
       <hr>
       <h5><%= @idea.title %></h5>

@@ -12,5 +12,19 @@ class Idea < ApplicationRecord
     (image.attached?) ? image : 'no_image.jpg'
   end
   
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @idea = Idea.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @idea = Idea.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @idea = Idea.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @idea = Idea.where("title LIKE?","%#{word}%")
+    else
+      @idea = Idea.all
+    end
+  end
   
 end
