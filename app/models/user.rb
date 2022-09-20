@@ -9,10 +9,42 @@ class User < ApplicationRecord
   has_many :idea_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_posts, through: :favorites, source: :idea # 非同期用
+  
+  # フォローをした、されたの関係
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  
+  # 一覧画面で使う
+  has_many :followings, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+  
+  
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  
+    # フォローしたときの処理
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+  # フォローを外すときの処理
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  # フォローしているか判定
+  def following?(user)
+    followings.include?(user)
+  end
+  
+
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+  
+  # validates :last_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  # validates :first_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
   
-  # validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  # validates :introduction, length: { maximum: 50 }
+  
   
   
    def get_profile_image#(width, height)
@@ -31,20 +63,24 @@ class User < ApplicationRecord
   end
   
   
+  
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @user = User.where("last_name LIKE?", "#{word}")
+      #@user = User.where("last_name LIKE?", "#{word}")
+      #@user = User.select('id, first_name, last_name, last_name || first_name as full_name').filter{|user| user.full_name == "#{word}"}
+       @user = User.where("last_name || first_name = ?","#{word}")
     elsif search == "forward_match"
-      @user = User.where("last_name LIKE?","#{word}%")
+      @user = User.where("last_name || first_name LIKE?","#{word}%")
     elsif search == "backward_match"
-      @user = User.where("last_name LIKE?","%#{word}")
+      @user = User.where("last_name || first_name LIKE?","%#{word}")
     elsif search == "partial_match"
-      @user = User.where("last_name LIKE?","%#{word}%")
+      @user = User.where("last_name || first_name LIKE?","%#{word}%")
     else
       @user = User.all
     end
   end
+  
   
   
   def favorited_by?(idea_id)

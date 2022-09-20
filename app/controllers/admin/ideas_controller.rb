@@ -7,6 +7,28 @@ class Admin::IdeasController < ApplicationController
   #中略 def indexとか必要なものを書いてください！
   def index
     @ideas = Idea.all 
+    @genres = Genre.all
+  end
+  
+    
+  def show
+    @idea_new = Idea.new
+    @idea = Idea.find(params[:id])
+    @idea_image = @idea.image
+    @genres = Genre.all
+    
+    # unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
+    #   current_user.view_counts.create(idea_id: @idea.id)
+    # end
+    #@idea_comment = IdeaComment.new
+    
+    
+    # コメント一覧表示で使用する全コメントデータを代入（新着順で表示）
+    #binding.pry
+    @comments = @idea.idea_comments.order(created_at: :desc)
+    # コメントの作成
+    @comment = IdeaComment.new
+    #右側はmodel名を
   end
   
   def destroy

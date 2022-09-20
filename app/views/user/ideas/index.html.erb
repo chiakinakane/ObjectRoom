@@ -1,10 +1,13 @@
+<!---->
 <div class='container px-5 px-sm-0'>
   <%= render 'layouts/errors', obj: @idea %>
   <div class='row'>
     <div class='col-md-2'>
       <h3><strong>User info</strong></h3>
       <%= render 'user/users/info', user: current_user %>
+      <% if current_user.name != "guestuser" %>
       <%= link_to '新規投稿', new_idea_path, class: "btn btn-info" %>
+      <% end %>
       <h3 class="mt-2"><strong>ジャンル</strong></h3>
       <%= render 'genre_search', genres: @genres %>
     </div>

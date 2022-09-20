@@ -5,19 +5,31 @@
 <div id="comments">
   <% comments.first(2).each do |comment| %>
     <%= render 'user/idea_comments/idea_comments', comment: comment %>
+    <% if current_admin %>
+      <%= link_to "管理者が削除するよ", admin_idea_idea_comment_path(@idea.id, comment.id), method: :delete %>
+    <% end %>
   <% end %>
 </div>
 
 <!-- コメントが3件以上の場合、残りのコメントをプルダウンで表示するボタンの作成 -->
 <% comments.offset(2).any? %>
-<div id="comments">
-  <button type="button" class="btn-primary" onclick="this.parentNode.style.display='none'">
+<div id="more_btn">
+  <button type="button" class="btn btn-info" onclick="document.getElementById('more_btn').style.display='none'; document.getElementById('more_comments').style.display='block'">
+    <!--onclick= JavaScriptの呼び出し　document＝ページ全体　getElementById('more_btn')＝Element＝タグの塊　　more_btnを呼び出してください　style＝css .display='none'=アクションを起こす　-->
     もっと見る....
   </button>
 </div>
-<% comments.offset(2).each do |comment| %>
-<div id="comments"><%= render 'user/idea_comments/idea_comments', comment: comment %></div>
-<% end %>
-<%# if current_admin %>
-  <%#= link_to "管理者が削除するよ", idea_comments_path(t.id), method: :delete %>
-<%# end %>
+<div id="more_comments" style="display:none">
+  <% comments.offset(2).each do |comment| %>
+    <%= render 'user/idea_comments/idea_comments', comment: comment %>
+    <% if current_admin %>
+      <%= link_to "管理者が削除するよ", admin_idea_idea_comment_path(@idea.id, comment.id), method: :delete %>
+    <% end %>
+  <% end %>
+  <div id="return_btn">
+    <button type="button" class="btn btn-info" onclick="document.getElementById('more_btn').style.display='block'; document.getElementById('more_comments').style.display='none'">
+      隠す....
+  </button>
+</div>
+
+</div>

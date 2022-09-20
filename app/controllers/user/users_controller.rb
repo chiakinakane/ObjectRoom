@@ -25,6 +25,7 @@ class User::UsersController < ApplicationController
     @users = User.all
     @idea = Idea.new
     @ideas = Idea.all
+    @genres = Genre.all
   end # 2end抜け
 
   def edit
@@ -45,6 +46,14 @@ class User::UsersController < ApplicationController
     favorites = Favorite.where(user_id: @user.id).pluck(:idea_id)
     # pluckプラック　配列で返す
     @favorite_ideas = Idea.find(favorites)
+  end
+  
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行致しました"
+    redirect_to root_path
   end
   
 

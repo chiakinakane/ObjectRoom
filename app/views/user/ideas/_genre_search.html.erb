@@ -2,7 +2,7 @@
 <div class = "genre-search-contents ", style = "height:300px">
   <% genres.each do |genre| %>
     <p class = "ml-2 mt-2">
-     <i class="fas fa-tags"></i>
+     <i class="fas fa-tags" style="color: #FF6600;" ></i>
       <%= link_to idea_genre_ideas_path(genre), class:"text-dark" do %>
         <%= genre.name %>
       <% end %>

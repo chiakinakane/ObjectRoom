@@ -2,7 +2,8 @@
 
 <th class="mt-2"><strong>（全<%= ideas.count%>件）</strong></th>
   <% if current_user %>
-    <%= link_to "いいね一覧", favorites_user_path(@user) %>
+    <%= link_to "いいね一覧", favorites_user_path(current_user) %>
+    <!--新規投稿時変更有り-->
   <% end %>
   <table class='table table-hover table-inverse'>
     <thead>
@@ -10,19 +11,30 @@
         <th>画像</th>
         <th>タイトル</th>
         <th>おすすめポイント</th>
-        
       </tr>
     </thead>
     <tbody>
       <% ideas.each do |idea| %>
         <tr>
-          <td><%= image_tag idea.get_image, size:"200x150" %></td>
+          <td>
+            <%= link_to idea_path(idea) do %>
+              <%= image_tag idea.get_image, size:"200x150" %>
+            <% end %>
+          </td>
+          <% if current_admin %>
+          <td><%= link_to idea.title, admin_idea_path(idea) %></td>
+          <% else %>
           <td><%= link_to idea.title,idea %></td>
+          <!--第一引数が表示させたいもの・第２引数遷移先-->
+          <% end %>
           <td><%= idea.body %></td>
           </td>
           <% if current_user %>
           <td id = "favorite_<%= idea.id %>">
-               <%= render partial: "user/favorites/favorite", locals: { idea: idea } %>
+             <%= render partial: "user/favorites/favorite", locals: { idea: idea } %>
+          </td>
+          <td>
+             <i class="fas fa-comment-dots"></i><%= idea.idea_comments.count %>
           </td>
           <% end %>
           <td>

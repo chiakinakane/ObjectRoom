@@ -1,4 +1,8 @@
 class User::IdeaCommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+  # 非同期用のjsが呼ばれていなかった
+  # jsはdef create. def destroy に連動している。
+  
   def create
     # byebug
     # コメントをする対象の投稿(travel_record)のインスタンスを作成
@@ -9,10 +13,8 @@ class User::IdeaCommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash.now[:notice] = "コメントの投稿に成功しました。"
-      render :index
     else
       flash.now[:alert] ="コメントの投稿に失敗しました。"
-      render :index
     end
   end
 
@@ -20,7 +22,6 @@ class User::IdeaCommentsController < ApplicationController
     @comment = IdeaComment.find(params[:id])
     @comment.destroy
     flash.now[:notice] = "コメントを削除しました。"
-    render :index
   end
 
   private

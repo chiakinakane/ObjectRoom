@@ -1,47 +1,8 @@
 <div class='container'>
   <div class='row'>
-   <div class="col-md-2">
-    <h3 class="mt-2"><strong>User info</strong></h3>
-       <%= render 'user/users/info', user: @idea.user %>
-       <%= link_to '新規投稿', new_idea_path, class: "btn btn-info" %>
-      <h3 class="mt-2"><strong>ジャンル</strong></h3>
-      <%= render 'genre_search', genres: @genres %>
-      <!--レンダー階層が同じならファイル名のみで記入-->
-    </div>
     <div class='col-md-9 offset-md-1'>
       <h3><strong>アイデア</strong></h3>
-      <hr>
-      <h5><%= @idea.title %></h5>
-      <div class="row">
-        <div class="col-md-5">
-          <%= link_to user_path(@idea.user) do %>
-            <%= image_tag @idea.get_image, class: 'img-fluid' %>
-          <% end %>
-        </div>
-        <div class="col-md-7">
-          <%= simple_format(@idea.body) %>
-          <div class="row">
-            <div class="col-md-6">
-              投稿者：<%= link_to @idea.user.name, user_path(@idea.user) %>
-              <div class="control-btn mt-3">
-                <%= link_to 'Edit', edit_idea_path(@idea), class: "btn btn-sm btn-success" %>
-                <%= link_to 'Destroy', @idea, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-              </div>
-            </div>
-            <div class="col-md-6 text-right">
-              <div id="favorite_<%= @idea.id %>">
-                <%= render partial: "user/favorites/favorite", locals: { idea: @idea } %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <%= render 'user/idea_comments/index', comments: @comments %>
-      <hr>
-      <% if user_signed_in? %>
-        <%= render 'user/idea_comments/form', idea: @idea, comment: @comment %>
-      <% end %>
-  </div>
+      <%= render 'user/ideas/idea', idea: @idea %>
+    </div>
   </div>
 </div>

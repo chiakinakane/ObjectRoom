@@ -22,14 +22,22 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
-    resources :ideas, only: [:index, :destroy]
+    resources :ideas, only: [:index, :show, :destroy] do
+    resources :idea_comments, only: [:destroy]
+    end
     end
   
     scope module: :user do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get "search" => "searches#search"
+  # 退会機能
+    get 'check' => 'users#check'
+    patch 'withdraw' => 'users#withdraw'
     resources :users, only: [:index, :show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
  # いいね一覧表示
     member do
     get :favorites

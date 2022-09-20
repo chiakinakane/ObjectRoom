@@ -8,7 +8,7 @@ class User::IdeasController < ApplicationController
 
   def index
     @idea = Idea.new
-    @user = current_user
+    #@user = current_user
     @ideas = Idea.all  
     @genres = Genre.all
   end
@@ -40,13 +40,16 @@ class User::IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
-    #ユーザーのid のみ持ってくる記述を
-    
+    #ユーザーのid のみ持ってくる記述
     if @idea.save
       redirect_to idea_path(@idea.id), notice: "新しい投稿ができました。"
+      # 指定のURLに飛ばせる
+      # ブラウザに命令する
     else
-      @ideas = Idea.all
-      render "index"
+      #@ideas = Idea.all
+      #@genres = Genre.all
+      render "new"
+      # 指定のViEWを呼んでくる
     end
   end
   
