@@ -16,3 +16,13 @@ User.create!(
    email: 'aa@aa',
    password: 'aaaaaa'
 )
+
+Genre.create!(
+   name: 'リビング'
+)
+Genre.create!(
+   name: '寝室'
+)
+Genre.create!(
+   name: '台所'
+)
