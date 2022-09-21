@@ -1,2 +1,2 @@
-# class Public::SearchesController < ApplicationController
-# end
+class Public::SearchesController < ApplicationController
+end
