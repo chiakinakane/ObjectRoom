@@ -1,10 +1,10 @@
 class Admin::IdeasController < ApplicationController
-  
+
   #  before_action :authenticate_user!も必要なら書いてください！
   before_action :if_not_admin
   before_action :set_idea, only: [:destroy] #onlyのアクションは必要なものだけ書いてください
   
-  #中略 def indexとか必要なものを書いてください！
+  
   def index
     @ideas = Idea.all 
     @genres = Genre.all
@@ -16,6 +16,7 @@ class Admin::IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @idea_image = @idea.image
     @genres = Genre.all
+    # current_user.name = "admin"
     
     # unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
     #   current_user.view_counts.create(idea_id: @idea.id)

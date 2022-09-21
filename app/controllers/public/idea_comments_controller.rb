@@ -1,3 +1,3 @@
-class Public::IdeaCommentsController < ApplicationController
+# class Public::IdeaCommentsController < ApplicationController
   
-end
+# end

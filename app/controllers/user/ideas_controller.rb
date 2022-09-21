@@ -81,11 +81,11 @@ class User::IdeasController < ApplicationController
   
   #投稿の紐付け
   def ensure_correct_user
-  @idea = Idea.find(params[:id])
-  unless @idea.user == current_user
-    redirect_to ideas_path
+    @idea = Idea.find(params[:id])
+    unless @idea.user == current_user
+      redirect_to ideas_path
+    end
   end
-end
 
 end
 
