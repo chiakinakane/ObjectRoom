@@ -29,9 +29,11 @@
         <%= render 'user/idea_comments/index', comments: @comments %>
       </div>
       <hr>
-
-      <% if current_user.name != "guestuser" %>
-        <%= render 'user/idea_comments/form', idea: idea, comment: @comment %>
+      <% if current_user.present? %>
+      <!--preset?　nillじゃなければ　blanck?nillであれば-->
+        <% if current_user.name != "guestuser" %>
+          <%= render 'user/idea_comments/form', idea: idea, comment: @comment %>
+        <% end %>
       <% end %>
       <!--みどり２００ばんサーバー側じゃない-->
       <!--コンソール検証を探す-->
