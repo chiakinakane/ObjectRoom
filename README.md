@@ -1,24 +1,62 @@
-# README
+# ROOM layout
+ 
+## サイト概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイトテーマ
 
-Things you may want to cover:
+収納上手になっておうち時間を快適に過ごそうがテーマのコミュニティサイト
 
-* Ruby version
 
-* System dependencies
+## テーマを選んだ理由
 
-* Configuration
+おうち時間が増えて部屋のレイアウトを良くしたいと色々収納道具を増やしたり
 
-* Database creation
+ルームレイアウトを検索していましたがいいサイトに出会えなかったので
 
-* Database initialization
+レイアウトを集めた交流型サイトがあったらいいなと思いテーマに決めました。
 
-* How to run the test suite
+思いついた収納アイデアを投稿していいねをもらったり、
 
-* Services (job queues, cache servers, search engines, etc.)
+気になる収納アイテムについて検索や、利用している人の投稿を見ることが出来たらよりよく自分の部屋のレイアウトが
 
-* Deployment instructions
+出来ると思いました。
 
-* ...
+気になったらコメントで投稿主をコミュニケーションを取ることが出来れば楽しく利用できると思いました。
+
+## ターゲットユーザ
+
+どんなレイアウトがあるか見たい人
+
+どんな収納方法がいいか調べたい人
+
+よそのルームレイアウトを知りたい人
+
+収納好き、模様替えを考えている人など
+
+## 主な利用シーン
+
+知らない収納道具に出会いたい時
+
+収納方法を知りたい時
+
+ルームレイアウトを参考にしたい時
+
+## 設計書
+<...>
+
+##開発環境
+
+OS：Linux(CentOS)
+
+言語：HTML,CSS,JavaScript,Ruby,SQL
+
+フレームワーク：Ruby on Rails
+
+JSライブラリ：jQuery
+
+IDE：Cloud9
+
+## 使用素材
+
+https://www.photo-ac.com/
+
