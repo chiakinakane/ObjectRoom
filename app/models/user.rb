@@ -92,7 +92,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.first_name = "guestuser"
       user.last_name = "❤︎"
-      #存在するからむ名じゃないと保存できない。
+      #存在するカラム名じゃないと保存できない。
     end
   end
 end
