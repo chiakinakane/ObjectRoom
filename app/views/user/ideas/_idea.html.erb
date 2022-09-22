@@ -1,41 +1,41 @@
-      <hr>
-      <h5><%= idea.title %></h5>
-      <div class="row">
-        <div class="col-md-5">
-          <%= link_to user_path(idea.user) do %>
-            <%= image_tag idea.get_image, class: 'img-fluid' %>
-          <% end %>
-        </div>
-        <div class="col-md-7">
-          <%= simple_format(idea.body) %>
-          <div class="row">
-            <div class="col-md-6">
-              投稿者：<%= link_to idea.user.name, user_path(idea.user) %>
-              <div class="control-btn mt-3">
-                <%= link_to '編集', edit_idea_path(idea), class: "btn btn-sm btn-success" %>
-                <%= link_to '削除', idea, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-              </div>
-            </div>
-            <div class="col-md-6 text-right">
-              <div id="favorite_<%= idea.id %>">
-                <%= render partial: "user/favorites/favorite", locals: { idea: idea } %>
-              </div>
-            </div>
-          </div>
+<hr>
+<h5><%= idea.title %></h5>
+<div class="row">
+  <div class="col-md-5">
+    <%= link_to user_path(idea.user) do %>
+      <%= image_tag idea.get_image, class: 'img-fluid' %>
+    <% end %>
+  </div>
+  <div class="col-md-7">
+    <%= simple_format(idea.body) %>
+    <div class="row">
+      <div class="col-md-6">
+        投稿者：<%= link_to idea.user.name, user_path(idea.user) %>
+        <div class="control-btn mt-3">
+          <%= link_to '編集', edit_idea_path(idea), class: "btn btn-sm btn-success" %>
+          <%= link_to '削除', idea, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
         </div>
       </div>
-      <hr>
-      <div id="comments_area">
-        <%= render 'user/idea_comments/index', comments: @comments %>
+      <div class="col-md-6 text-right">
+        <div id="favorite_<%= idea.id %>">
+          <%= render partial: "user/favorites/favorite", locals: { idea: idea } %>
+        </div>
       </div>
-      <hr>
-      <% if current_user.present? %>
-      <!--preset?　nillじゃなければ　blanck?nillであれば-->
-        <% if current_user.name != "guestuser" %>
-          <%= render 'user/idea_comments/form', idea: idea, comment: @comment %>
-        <% end %>
-      <% end %>
-      <!--みどり２００ばんサーバー側じゃない-->
-      <!--コンソール検証を探す-->
-      <!--５００番台はサーバーエラー-->
-      <!--railslogを見る-->
+    </div>
+  </div>
+</div>
+<hr>
+<div id="comments_area">
+  <%= render 'user/idea_comments/index', comments: @comments %>
+</div>
+<hr>
+<% if current_user.present? %>
+<!--preset?　nillじゃなければ　blanck?nillであれば-->
+  <% if current_user.name != "guestuser" %>
+    <%= render 'user/idea_comments/form', idea: idea, comment: @comment %>
+  <% end %>
+<% end %>
+<!--みどり２００ばんサーバー側じゃない-->
+<!--コンソール検証を探す-->
+<!--５００番台はサーバーエラー-->
+<!--railslogを見る-->

@@ -91,6 +91,7 @@ class User < ApplicationRecord
     find_or_create_by!(first_name: "guestuser", email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.first_name = "guestuser"
+      user.last_name = "❤︎"
       #存在するからむ名じゃないと保存できない。
     end
   end

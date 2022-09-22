@@ -34,8 +34,10 @@ class Admin::IdeasController < ApplicationController
   
   def destroy
     @idea = Idea.find(params[:id])
+    @ideas = Idea.all
     @idea.destroy
-    redirect_to admin_ideas_path
+    #redirect_to admin_ideas_path
+    
   end
   
   private

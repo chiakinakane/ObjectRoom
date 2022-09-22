@@ -6,7 +6,8 @@
   <% comments.first(2).each do |comment| %>
     <%= render 'user/idea_comments/idea_comments', comment: comment %>
     <% if current_admin %>
-      <%= link_to "管理者が削除するよ", admin_idea_idea_comment_path(@idea.id, comment.id), method: :delete %>
+      <%= link_to "管理者が削除するよ", admin_idea_idea_comment_path(@idea.id, comment.id), method: :delete, remote:true %>
+      <!--remote:true 非同期　jsを呼ぶ記述　順番は不順でok-->
     <% end %>
   <% end %>
 </div>
@@ -23,7 +24,7 @@
   <% comments.offset(2).each do |comment| %>
     <%= render 'user/idea_comments/idea_comments', comment: comment %>
     <% if current_admin %>
-      <%= link_to "管理者が削除するよ", admin_idea_idea_comment_path(@idea.id, comment.id), method: :delete %>
+      <%= link_to "管理者が削除するよ", admin_idea_idea_comment_path(@idea.id, comment.id), method: :delete, remote:true %>
     <% end %>
   <% end %>
   <div id="return_btn">

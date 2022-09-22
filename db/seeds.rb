@@ -11,8 +11,10 @@ Admin.create!(
 )
 
 User.create!(
-   last_name: 'nakane',
-   first_name: 'chiaki',
+   last_name: '盛り盛り',
+   first_name: '食べ盛り',
+   kana_last_name: 'モリモリ',
+   kana_first_name: 'タベザカリ',
    email: 'aa@aa',
    password: 'aaaaaa'
 )
