@@ -57,15 +57,15 @@ class User < ApplicationRecord
     if search == "perfect_match"
       #@user = User.where("last_name LIKE?", "#{word}")
       #@user = User.select('id, first_name, last_name, last_name || first_name as full_name').filter{|user| user.full_name == "#{word}"}
-       @user = User.where("last_name || first_name = ?","#{word}")
+      User.where("last_name || first_name = ?","#{word}")
     elsif search == "forward_match"
-      @user = User.where("last_name || first_name LIKE?","#{word}%")
+      User.where("last_name || first_name LIKE?","#{word}%")
     elsif search == "backward_match"
-      @user = User.where("last_name || first_name LIKE?","%#{word}")
+      User.where("last_name || first_name LIKE?","%#{word}")
     elsif search == "partial_match"
-      @user = User.where("last_name || first_name LIKE?","%#{word}%")
+      User.where("last_name || first_name LIKE?","%#{word}%")
     else
-      @user = User.all
+      User.all
     end
   end
   

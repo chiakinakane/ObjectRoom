@@ -15,16 +15,17 @@ class Idea < ApplicationRecord
   
   # 検索方法分岐
   def self.looks(search, word)
+   # byebug
     if search == "perfect_match"
-      @idea = Idea.where("title ","#{word}")
+      Idea.where("title = ?","#{word}")
     elsif search == "forward_match"
-      @idea = Idea.where("title LIKE?","#{word}%")
+      Idea.where("title LIKE?","#{word}%")
     elsif search == "backward_match"
-      @idea = Idea.where("title LIKE?","%#{word}")
+      Idea.where("title LIKE?","%#{word}")
     elsif search == "partial_match"
-      @idea = Idea.where("title LIKE?","%#{word}%")
+      Idea.where("title LIKE?","%#{word}%")
     else
-      @idea = Idea.all
+      Idea.all
     end
   end
   
