@@ -18,12 +18,6 @@ class User::IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @idea_image = @idea.image
     @genres = Genre.all
-    # unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
-    #   current_user.view_counts.create(idea_id: @idea.id)
-    # end
-    #@idea_comment = IdeaComment.new
-    
-    
     # コメント一覧表示で使用する全コメントデータを代入（新着順で表示）
     #binding.pry
     @comments = @idea.idea_comments.order(created_at: :desc)
@@ -46,8 +40,6 @@ class User::IdeasController < ApplicationController
       # 指定のURLに飛ばせる
       # ブラウザに命令する
     else
-      #@ideas = Idea.all
-      #@genres = Genre.all
       render "new"
       # 指定のViEWを呼んでくる
     end

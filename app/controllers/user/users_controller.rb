@@ -3,9 +3,6 @@ class User::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
-  # いいね一覧表示
-  # before_action :set_user, only: [:favorites]
-  
   
   def show
     @user = User.find(params[:id])
@@ -13,13 +10,6 @@ class User::UsersController < ApplicationController
     @idea = Idea.new
     @genres = Genre.all
   end
-
-  # def my_page
-  #   @user = current_user
-  #   @ideas = @user.ideas
-  #   @idea = Idea.new
-  #   render :show
-  # end
 
   def index
     @users = User.all
@@ -44,7 +34,7 @@ class User::UsersController < ApplicationController
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:idea_id)
-    # pluckプラック　配列で返す
+    # pluckプラックとは　配列で返す
     @favorite_ideas = Idea.find(favorites)
   end
   
@@ -75,8 +65,4 @@ class User::UsersController < ApplicationController
         redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
       end
     end
-    # いいねした投稿を探し、@favorite_ideasに格納
-    # def set_user
-    #   @user = User.find(params[:id])
-    # end
 end

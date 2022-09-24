@@ -20,17 +20,16 @@
         <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
       <% end %>
     <% end %>
-
-</tr>
-<% end %> 
+    </tr>
+    <% end %> 
   </div>
-  <% if user.name != "guestuser" %>
-    <div class="profile-image my-3">
-      <%= link_to edit_user_path(user) do %>
-        <%= image_tag user.get_profile_image, class: 'rounded-circle', size: '150x150' %>
-      <% end %>
-    </div>
-  <% end %>
+    <% if user.name != "guestuser" %>
+      <div class="profile-image my-3">
+        <%= link_to edit_user_path(user) do %>
+          <%= image_tag user.get_profile_image, class: 'rounded-circle', size: '150x150' %>
+        <% end %>
+      </div>
+    <% end %>
 </div>
 
 

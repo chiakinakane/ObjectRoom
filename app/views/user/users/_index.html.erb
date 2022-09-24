@@ -8,16 +8,15 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-      <tr>
+      <tr>like
         <td>
-        <%= link_to user_path(user.id) do %>
-          <%= image_tag user.get_profile_image, class: 'rounded-circle', size: '50x50' %>
-          </td>
-          <td>
-          <%= user.name %>
-          </td>
-        <% end %>
-        <td><%#= link_to 'Show', user %></td>
+          <%= link_to user_path(user.id) do %>
+            <%= image_tag user.get_profile_image, class: 'rounded-circle', size: '50x50' %>
+        </td>
+        <td>
+            <%= user.name %>
+        </td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

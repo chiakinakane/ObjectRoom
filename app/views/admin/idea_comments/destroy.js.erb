@@ -1,3 +1,4 @@
+<!--削除後、限定した箇所のみレンダーで表示させたいものを持ってこれる-->
 $("#comments_area").html("<%= j(render 'user/idea_comments/index', { comments: @comment.idea.idea_comments.order(created_at: :desc)}) %>");
 <!--@comment.(idea_commetnt.controlle)で紐づけられたものの中の.idea(idea_comment.rb(belongs_to:idea))につながって.idea_comment(idea.rb(has_many:idea_comments~))を持ってきてねって記述になってる-->
 $("textarea").val('');

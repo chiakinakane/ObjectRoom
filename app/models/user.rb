@@ -35,32 +35,20 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
-
+  #特定の条件のアカウントをログインさせなくする
   def active_for_authentication?
     super && (is_deleted == false)
   end
   
-  # validates :last_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  # validates :first_name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-
-  
-  
-  
-  
+  # プロフィール画像の設定
    def get_profile_image#(width, height)
     (profile_image.attached?) ? profile_image : "no_image.jpg"
+   end
    
-  # unless profile_image.attached?
-  #   file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
-  #   profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-  # end
-  # profile_image.variant(resize_to_limit: [width, height]).processed
-
-  end
-  #保存した後に使えるメソッド
-  def name
-    last_name.to_s + first_name.to_s
-  end
+    #nameの合併。保存した後に使えるメソッド
+   def name
+     last_name.to_s + first_name.to_s
+   end
   
   
   
@@ -82,11 +70,12 @@ class User < ApplicationRecord
   end
   
   
-  
+  #いいね
   def favorited_by?(idea_id)
     favorites.where(idea_id: idea_id).exists?
   end
   
+  #ゲストユーザー設定
   def self.guest
     find_or_create_by!(first_name: "guestuser", email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64

@@ -1,8 +1,7 @@
 class Admin::IdeasController < ApplicationController
 
-  #  before_action :authenticate_user!も必要なら書いてください！
   before_action :if_not_admin
-  before_action :set_idea, only: [:destroy] #onlyのアクションは必要なものだけ書いてください
+  before_action :set_idea, only: [:destroy]
   
   
   def index
@@ -16,28 +15,19 @@ class Admin::IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @idea_image = @idea.image
     @genres = Genre.all
-    # current_user.name = "admin"
-    
-    # unless ViewCount.find_by(user_id: current_user.id, idea_id: @idea.id)
-    #   current_user.view_counts.create(idea_id: @idea.id)
-    # end
-    #@idea_comment = IdeaComment.new
-    
-    
     # コメント一覧表示で使用する全コメントデータを代入（新着順で表示）
     #binding.pry
     @comments = @idea.idea_comments.order(created_at: :desc)
     # コメントの作成
     @comment = IdeaComment.new
-    #右側はmodel名を
+    #右側はmodel名を記述
   end
   
+  #非同期のためredirect_toの記述なし
   def destroy
     @idea = Idea.find(params[:id])
     @ideas = Idea.all
     @idea.destroy
-    #redirect_to admin_ideas_path
-    
   end
   
   private

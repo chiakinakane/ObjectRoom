@@ -4,7 +4,6 @@ class User::FavoritesController < ApplicationController
  
   def create
     Favorite.create(user_id: current_user.id, idea_id: @idea.id)
-    # @idea = Idea.find(params[:idea_id])
   end
 
   def destroy

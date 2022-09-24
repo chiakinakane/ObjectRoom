@@ -14,6 +14,7 @@ class User::GenresController < ApplicationController
  private
   
   def genre_params
-    params.require(:genre).permit(:name)#dbマイグレートで確認
+    params.require(:genre).permit(:name)
+    #dbマイグレートで確認
   end
 end
