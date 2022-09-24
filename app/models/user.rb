@@ -55,8 +55,6 @@ class User < ApplicationRecord
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      #@user = User.where("last_name LIKE?", "#{word}")
-      #@user = User.select('id, first_name, last_name, last_name || first_name as full_name').filter{|user| user.full_name == "#{word}"}
       User.where("last_name || first_name = ?","#{word}")
     elsif search == "forward_match"
       User.where("last_name || first_name LIKE?","#{word}%")
