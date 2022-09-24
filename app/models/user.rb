@@ -62,8 +62,6 @@ class User < ApplicationRecord
       User.where("last_name || first_name LIKE?","%#{word}")
     elsif search == "partial_match"
       User.where("last_name || first_name LIKE?","%#{word}%")
-    else
-      User.all
     end
   end
   
