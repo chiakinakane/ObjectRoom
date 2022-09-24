@@ -55,13 +55,25 @@ class User < ApplicationRecord
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      User.where("last_name || first_name = ?","#{word}")
+      #開発環境の場合
+      #User.where("last_name || first_name = ?","#{word}")
+      # MySQLの場合
+      User.where("concat(last_name,first_name) = ?","#{word}")
     elsif search == "forward_match"
-      User.where("last_name || first_name LIKE?","#{word}%")
+      #開発環境の場合
+      #User.where("last_name || first_name LIKE?","#{word}%")
+      # MySQLの場合
+      User.where("concat(last_name,first_name)  LIKE?","#{word}%")
     elsif search == "backward_match"
-      User.where("last_name || first_name LIKE?","%#{word}")
+      #開発環境の場合
+      #User.where("last_name || first_name LIKE?","%#{word}")
+      # MySQLの場合
+      User.where("concat(last_name,first_name)  LIKE?","%#{word}")
     elsif search == "partial_match"
-      User.where("last_name || first_name LIKE?","%#{word}%")
+      #開発環境の場合
+      #User.where("last_name || first_name LIKE?","%#{word}%")
+      # MySQLの場合
+      User.where("concat(last_name,first_name)  LIKE?","%#{word}%")
     else
       User.all
     end
