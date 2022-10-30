@@ -18,7 +18,8 @@
         <tr>
           <td>
             <%= link_to idea_path(idea) do %>
-              <%= image_tag idea.get_image, size:"200x150" %>
+              <%#= image_tag idea.get_image, size:"200x150" %>
+              <%= image_tag idea.get_image, class: 'w-150 favorite-card-img' %>
             <% end %>
           </td>
             <% if current_admin %>

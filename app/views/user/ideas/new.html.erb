@@ -12,7 +12,7 @@
         <%= f.text_field :title, placeholder: "アイデア", class: 'form-control' %><br>
         
         <strong><%= f.label :body, "おすすめポイント", style:"vertical-align:top; margin-top:5px; margin-right:23px;"  %></strong>
-        <%= f.text_area :body, placeholder: "ここに説明文を記述します", rows: 5, class: 'form-control' %><br>
+        <%= f.text_area :body, placeholder: "200文字以内で記述が可能です。", rows: 5, class: 'form-control' %><br>
         
         <strong><%= f.label :genre_id, "ジャンル", style:"margin-right:88px;"  %></strong>
       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, class: 'form-control' %><br>
